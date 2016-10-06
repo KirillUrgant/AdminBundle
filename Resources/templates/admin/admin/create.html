@@ -19,7 +19,7 @@
             {% include admin.findTemplate("_buttons_create.html") %}
             <input type="hidden" value="{{ request.get.get('popup') }}" name="popup" />
             <input type="hidden" value="{{ request.get.get('popup_id') }}" name="popup_id" />
-            {% csrf_token %}
+            {{ csrf_input()|safe }}
             {{ form.render()|raw }}
             {% include admin.findTemplate("_buttons_create.html") %}
         </form>

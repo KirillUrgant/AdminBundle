@@ -1,11 +1,11 @@
 {% set actions = admin.getActions() %}
 {% if actions|length > 0 %}
     <form class="actions-form" action="{{ admin.getAdminUrl('list') }}" method="post">
-        {% csrf_token %}
+        {{ csrf_input()|safe }}
         <div class="actions--container">
             <div class="select-holder">
                 <select name="action" id="actions" class="actions">
-                    <option value="" disabled="disabled" selected="selected">{{ t('Choose action', 'admin') }}</option>
+                    <option value="" disabled="disabled" selected="selected">{{ t('Choose action', [], 'AdminBundle') }}</option>
                     {% for key, value in actions %}
                         <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}

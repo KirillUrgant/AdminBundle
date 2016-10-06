@@ -57,13 +57,13 @@ class AdminManager
     public function getAdmin(string $bundleName, string $admin) : AdminInterface
     {
         $bundles = $this->getKernel()->getBundles();
-        if (!array_key_exists($bundleName . 'Bundle', $bundles)) {
+        if (!array_key_exists($bundleName, $bundles)) {
             throw new NotFoundHttpException(sprintf(
                 "Bundle not found: %sBundle", $bundleName
             ));
         }
 
-        $bundle = $this->getKernel()->getBundle($bundleName . 'Bundle');
+        $bundle = $this->getKernel()->getBundle($bundleName);
 
         $adminClass = sprintf("%s\\Admin\\%s", $bundle->getNamespace(), $admin);
         if (class_exists($adminClass)) {

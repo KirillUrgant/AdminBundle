@@ -1,31 +1,31 @@
-{% set modules = get_modules_menu() %}
-<div class="modules">
-    <div class="row">
-        <div class="columns small-12">
-            <input type="search" class="modules__search" placeholder="{{ t('Search...', 'admin') }}"/>
-            <hr/>
-            {% for name, items in get_modules_new_menu() %}
-                {% if items|length == 0 %}
-                    {% continue %}
-                {% endif %}
-                <div class="admin-index-menu">
-                    <div class="admin-index-module-name">{{ name }}</div>
-                    <ul class="small-block-grid-5">
-                        {% for route in items %}
-                            <li>
-                                <div class="admin-index-menu-item">
-                                    <a class="admin-index-menu-icon" href="{{ route.url }}">
-                                        {% include route.icon ? route.icon : "admin/icons/unknown.svg" %}
-                                    </a>
-                                    <a href="{{ route.url }}">{{ route.name }}</a>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% else %}
-                <p>Доступные модули отсутствуют</p>
-            {% endfor %}
-        </div>
-    </div>
-</div>
+{#{% set modules = get_modules_menu() %}#}
+{#<div class="modules">#}
+    {#<div class="row">#}
+        {#<div class="columns small-12">#}
+            {#<input type="search" class="modules__search" placeholder="{{ t('Search...', [], 'AdminBundle.messages') }}"/>#}
+            {#<hr/>#}
+            {#{% for name, items in get_modules_new_menu() %}#}
+                {#{% if items|length == 0 %}#}
+                    {#{% continue %}#}
+                {#{% endif %}#}
+                {#<div class="admin-index-menu">#}
+                    {#<div class="admin-index-module-name">{{ name }}</div>#}
+                    {#<ul class="small-block-grid-5">#}
+                        {#{% for route in items %}#}
+                            {#<li>#}
+                                {#<div class="admin-index-menu-item">#}
+                                    {#<a class="admin-index-menu-icon" href="{{ route.url }}">#}
+                                        {#{% include route.icon ? route.icon : "admin/icons/unknown.svg" %}#}
+                                    {#</a>#}
+                                    {#<a href="{{ route.url }}">{{ route.name }}</a>#}
+                                {#</div>#}
+                            {#</li>#}
+                        {#{% endfor %}#}
+                    {#</ul>#}
+                {#</div>#}
+            {#{% else %}#}
+                {#<p>Доступные модули отсутствуют</p>#}
+            {#{% endfor %}#}
+        {#</div>#}
+    {#</div>#}
+{#</div>#}

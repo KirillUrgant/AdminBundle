@@ -24,7 +24,7 @@ class AdminController extends Controller
     }
 
     public function dispatchAction($bundle, $admin, $action)
-    { 
+    {
         /** @var \Mindy\Bundle\AdminBundle\Admin\AdminManager $adminManager */
         $adminManager = $this->get('admin');
         $instance = $adminManager->getAdmin($bundle, $admin);

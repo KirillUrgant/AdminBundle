@@ -16,7 +16,7 @@
         {% include admin.findTemplate('panel/_actions.html') %}
 
         <form action="" method="post" id="main-form">
-            {{ csrf_input() }}
+            {{ csrf_input()|safe }}
             {% include admin.findTemplate('_table.html') %}
         </form>
     </div>

@@ -1,0 +1,22 @@
+@mixin placeholder {
+  @include antialias;
+  font-size: .95rem;
+}
+
+::-webkit-input-placeholder {
+  @include placeholder;
+}
+
+/* Firefox 19+ */
+::-moz-placeholder {
+  @include placeholder;
+}
+
+/* Firefox 18- */
+:-moz-placeholder {
+  @include placeholder;
+}
+
+:-ms-input-placeholder {
+  @include placeholder;
+}

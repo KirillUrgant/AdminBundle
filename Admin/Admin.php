@@ -12,11 +12,8 @@ use Exception;
 use function Mindy\app;
 use Mindy\Form\Form;
 use Mindy\Form\ModelForm;
-use Mindy\Helper\Alias;
 use Mindy\Creator\Creator;
 use Mindy\Orm\Fields\BooleanField;
-use Mindy\Orm\Fields\HasManyField;
-use Mindy\Orm\Fields\ManyToManyField;
 use Mindy\Orm\Manager;
 use Mindy\Orm\Model;
 use Mindy\Orm\ModelInterface;
@@ -618,18 +615,6 @@ abstract class Admin extends BaseAdmin
         return $model->getMeta()->getAttributes();
     }
 
-    /**
-     * Array of action => name, where actions is an
-     * action in this admin class
-     * @return array
-     */
-    public function getActions()
-    {
-        return $this->can('remove') ? [
-            'batchRemove' => trans('framework.admin', 'Remove'),
-        ] : [];
-    }
-
     public function actionBatchRemove()
     {
         $models = $this->getRequest()->post->get('models');
@@ -803,62 +788,5 @@ abstract class Admin extends BaseAdmin
         }
 
         return null;
-    }
-
-    public function actionExport()
-    {
-        $fileName = 'export.xlsx';
-
-        $model = $this->getModel();
-        $header = [];
-        $fields = [];
-        foreach ($model->getFieldsInit() as $name => $field) {
-            if ($field instanceof ManyToManyField || $field instanceof HasManyField) {
-                continue;
-            }
-
-            $fields[] = $name;
-            $header[] = $field->getVerboseName($model);
-        }
-        $rows = $this->getQuerySet($model)->asArray()->valuesList($fields);
-        $path = Alias::get('App.runtime') . DIRECTORY_SEPARATOR . $fileName;
-
-        $chars = range(65, 90);
-
-        $objPHPExcel = new PHPExcel();
-        $sheet = $objPHPExcel->getActiveSheet();
-
-        $sheet->fromArray($header, NULL);
-        $first = PHPExcel_Cell::stringFromColumnIndex(0);
-        $last = PHPExcel_Cell::stringFromColumnIndex(count($header) - 1);
-        $sheet->getStyle($first . '1:' . $last . '1')->applyFromArray([
-            'font' => ['bold' => true],
-            'fill' => [
-                'type' => PHPExcel_Style_Fill::FILL_SOLID,
-                'color' => ['rgb' => 'f1f1f1']
-            ]
-        ]);
-
-        foreach ($rows as $i => $row) {
-            $rowInt = 0;
-            foreach ($row as $value) {
-                $sheet
-                    ->getCell(chr($chars[$rowInt]) . ((int)$i + 2))
-                    ->setValue($value)
-                    ->setDataType(PHPExcel_Cell_DataType::TYPE_STRING);
-                $rowInt++;
-            }
-        }
-
-        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-        $objWriter->save($path);
-
-        $content = file_get_contents($path);
-        unlink($path);
-
-        $request = $this->getRequest();
-        $request->http->sendFile($fileName, $content, null, true);
-
-        echo '<script type="text/javascript">window.close();</script>';
     }
 }

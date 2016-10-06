@@ -1,0 +1,35 @@
+.breadcrumbs {
+  margin-bottom: 20px;
+
+  &--list {
+    @include clearfix;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      float: left;
+      font-size: .9rem;
+
+      a {
+        text-decoration: none;
+        color: $text-color;
+
+        &:hover {
+          color: $base-color;
+        }
+      }
+
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &--item {
+
+    &, a {
+      color: $asbestos;
+    }
+  }
+}

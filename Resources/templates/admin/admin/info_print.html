@@ -1,11 +1,11 @@
 {% extends 'admin/base_print.html' %}
 
-{% block title %}{{ t('modules.Admin.main', 'Information about') }}{% endblock %}
+{% block title %}{{ t('Information about', [], 'AdminBundle.messages') }} {{ model }}{% endblock %}
 
 {% block content %}
     <div class="row">
         <div class="columns small-12">
-            <h1>{{ t('modules.Admin.main', 'Information about') }}</h1>
+            <h1>{{ t('Information about', [], 'AdminBundle.messages') }} {{ model }}</h1>
             {% include admin.findTemplate("_info_table.html") %}
         </div>
     </div>

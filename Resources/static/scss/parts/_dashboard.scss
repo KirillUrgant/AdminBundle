@@ -1,0 +1,25 @@
+.dashboard-widget {
+  padding: 5px;
+
+  &.background {
+    background: {
+      color: #fafafa;
+    }
+  }
+
+  .dashboard-widget-title {
+    font-weight: bold;
+    font-size: rem-calc(18px);
+    margin: 0;
+  }
+
+  hr {
+    border-bottom: 1px solid #eee;
+    height: 0;
+    margin: 12px 0;
+  }
+
+  .dashboard-widget-content {
+
+  }
+}

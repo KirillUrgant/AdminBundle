@@ -77,6 +77,18 @@ abstract class ModelAdmin extends Admin
     }
 
     /**
+     * Array of action => name, where actions is an
+     * action in this admin class
+     * @return array
+     */
+    public function getActions()
+    {
+        return $this->can('remove') ? [
+            'batchRemove' => trans('Remove', [], 'AdminBundle.messages'),
+        ] : [];
+    }
+
+    /**
      * @return string model class name
      */
     abstract public function getModelClass();

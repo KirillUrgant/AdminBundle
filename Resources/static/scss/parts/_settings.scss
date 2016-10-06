@@ -1,0 +1,9 @@
+.settings-container {
+  .settings-item {
+    margin-bottom: 15px;
+
+    .settings-title {
+      @include inline-title;
+    }
+  }
+}

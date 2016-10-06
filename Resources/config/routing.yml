@@ -5,3 +5,15 @@ admin_index:
 admin_dispatch:
     path: /{bundle}/{admin}/{action}
     defaults: { _controller: "AdminBundle:Admin:dispatch" }
+
+admin_login:
+    path: /login
+    defaults: { _controller: "AdminBundle:Admin:dispatch" }
+
+admin_logout:
+    path: /logout
+    defaults: { _controller: "AdminBundle:Admin:dispatch" }
+
+admin_forgot:
+    path: /forgot
+    defaults: { _controller: "AdminBundle:Admin:dispatch" }

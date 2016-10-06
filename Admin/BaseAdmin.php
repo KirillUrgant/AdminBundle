@@ -76,7 +76,7 @@ abstract class BaseAdmin implements AdminInterface
     public function getAdminUrl($action, array $params = [])
     {
         $url = $this->reverse('admin_dispatch', [
-            'bundle' => str_replace('Bundle', '', $this->getBundle()->getName()),
+            'bundle' => $this->getBundle()->getName(),
             'admin' => $this->classNameShort(),
             'action' => $action
         ]);
@@ -186,7 +186,17 @@ abstract class BaseAdmin implements AdminInterface
     {
         return $this->container->get('template')->render($template, array_merge($data, [
             'admin' => $this,
-            'bundle' => $this->bundle
+            'bundle' => $this->bundle,
+            'adminMenu' => $this->fetchAdminMenu()
         ]));
+    }
+
+    protected function fetchAdminMenu()
+    {
+        if ($this->container->hasParameter('admin.admin_menu')) {
+            return $this->container->getParameter('admin.admin_menu');
+        } else {
+            return [];
+        }
     }
 }

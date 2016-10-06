@@ -1,0 +1,44 @@
+.table--toolbar {
+  margin-bottom: 20px;
+
+  thead, tbody {
+    th, td {
+      padding: 0;
+    }
+
+    th {
+      letter-spacing: -.5px;
+      font-size: .95rem;
+      text-align: left;
+      color: #aaa;
+      font-weight: normal;
+
+      &.buttons {
+        width: 10%;
+        min-width: 200px;
+      }
+
+      &.search {
+        width: 90%;
+      }
+
+      &.actions {
+
+      }
+    }
+  }
+}
+
+@include b(actions) {
+  @include m(container) {
+    display: none;
+    margin: 15px 0;
+    padding: 10px;
+    position: absolute;
+    background-color: #fef5e7;
+    z-index: 20;
+    left: 0;
+    top: -68px;
+    box-shadow: 0 10px 19px rgba(0, 0, 0, 0.2);
+  }
+}

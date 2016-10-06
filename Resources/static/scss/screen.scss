@@ -1,0 +1,88 @@
+@import "mindy/normalize";
+@import "settings";
+@import "mindy/mindy";
+@import "base";
+@import "mixins";
+@import "vendor/bem";
+@import "vendor/codemirror";
+@import "vendor/codemirror_theme";
+@import "vendor/ace";
+@import "vendor/pikaday";
+@import "vendor/select2";
+@import "vendor/select";
+@import "vendor/mmodal";
+@import "vendor/chartist/chartist";
+@import "vendor/mnotify";
+
+a {
+  color: $base-color;
+}
+
+.heading {
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 20px 0;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -.2px;
+  @include antialias;
+
+  a {
+    font-weight: normal;
+  }
+}
+
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: 1.5rem - ($i * 0.10rem);
+  }
+}
+
+@mixin inline-title {
+  font-weight: bold;
+  padding-bottom: 5px;
+  border-bottom: 2px dotted rgba(#838383, 0.4);
+}
+
+hr {
+  margin: 20px 0;
+  background: none;
+  border: {
+    width: 0 0 2px 0;
+    style: dotted;
+    color: rgba(#838383, 0.4);
+  }
+}
+
+@import "fields/files_field";
+
+@import "parts/index_menu";
+@import "parts/files";
+@import "parts/login";
+@import "parts/footer";
+@import "parts/list";
+@import "parts/tooltip";
+@import "parts/json_table";
+@import "parts/modules_menu";
+@import "parts/dashboard";
+@import "parts/pager";
+@import "parts/order";
+@import "parts/info_block";
+@import "parts/settings";
+@import "parts/buttons";
+@import "parts/flash";
+@import "parts/file";
+@import "parts/toolbar";
+@import "parts/upload";
+@import "parts/form";
+@import "parts/placeholders";
+@import "parts/fieldset";
+@import "parts/breadcrumbs";
+@import "parts/table";
+@import "parts/header";
+@import "parts/main";
+@import "parts/tabs";
+@import "parts/scrollbar";
+
+@import "theme/dark";

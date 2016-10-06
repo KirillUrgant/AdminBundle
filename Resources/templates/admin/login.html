@@ -25,12 +25,12 @@
                     <button type="submit">login</button>
                 </form>
                 <hr>
-                <h1>{{ t('modules.Admin.main', 'Login') }}</h1>
+                <h1>{{ t('Sign in', [], 'AdminBundle.messages') }}</h1>
 
                 <form action="" method="post" class="form--main">
-                    {{ csrf() }}
+                    {{ csrf_input()|safe }}
                     {{ form|safe }}
-                    <button type="submit" class="ui button fluid tiny primary">{{ t('modules.Admin.main', 'Login') }}</button>
+                    <button type="submit" class="ui button fluid tiny primary">{{ t('Sign in', [], 'AdminBundle.messages') }}</button>
                 </form>
             </div>
         </div>
