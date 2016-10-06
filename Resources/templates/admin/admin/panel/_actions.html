@@ -5,7 +5,7 @@
         <div class="actions--container">
             <div class="select-holder">
                 <select name="action" id="actions" class="actions">
-                    <option value="" disabled="disabled" selected="selected">{{ t('Choose action', [], 'AdminBundle') }}</option>
+                    <option value="" disabled="disabled" selected="selected">{{ t('admin.action.choice', [], 'AdminBundle') }}</option>
                     {% for key, value in actions %}
                         <option value="{{ key }}">{{ value }}</option>
                     {% endfor %}

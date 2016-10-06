@@ -9,8 +9,6 @@
 namespace Mindy\Bundle\AdminBundle\Admin;
 
 use Exception;
-use Mindy\Module\ModuleInterface;
-use function Mindy\trans;
 use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -163,7 +161,6 @@ abstract class BaseAdmin implements AdminInterface
 
     /**
      * @param Bundle $bundle
-     * @return $this
      */
     public function setBundle(Bundle $bundle)
     {

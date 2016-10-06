@@ -1,19 +1,19 @@
 <div class="buttons-block">
     <input type="submit" class="button"
-           name="save" value="{{ t('Save', [], 'AdminBundle.messages') }}"/>
+           name="save" value="{{ t('admin.action.save', [], 'AdminBundle.messages') }}"/>
     <input type="submit" class="button basic"
-           name="save_continue" value="{{ t('Save and continue', [], 'AdminBundle.messages') }}"/>
+           name="save_continue" value="{{ t('admin.action.save_and_continue', [], 'AdminBundle.messages') }}"/>
     <input type="submit" class="button basic"
-           name="save_create" value="{{ t('Save and create', [], 'AdminBundle.messages') }}"/>
+           name="save_create" value="{{ t('admin.action.save_and_create', [], 'AdminBundle.messages') }}"/>
 
     {% if instance %}
         <div class="float-right">
             {% if method_exists(instance, "getAbsoluteUrl") %}
                 <a class="button basic" href="{{ instance.getAbsoluteUrl() }}"
-                   target="_blank">{{ t('View at site', [], 'AdminBundle.messages') }}</a>
+                   target="_blank">{{ t('admin.view_at_site', [], 'AdminBundle.messages') }}</a>
             {% endif %}
             <a class="button basic"
-               data-confirm="{{ t('Do you really want to delete this item?', [], 'AdminBundle.messages') }}"
+               data-confirm="{{ t('admin.delete_confirm', [], 'AdminBundle.messages') }}"
                href="{{ admin.getAdminUrl('remove', ['pk' => instance.pk]) }}">
                 <i class="icon trash"></i>
             </a>

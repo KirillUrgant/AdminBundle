@@ -10,7 +10,7 @@
                     {{ field.verboseName }}
                 {% else %}
                     {% if name == 'id' %}
-                        {{ t('Number / identifier', [], 'AdminBundle.messages') }}
+                        {{ t('admin.primary_key', [], 'AdminBundle.messages') }}
                     {% else %}
                         {{ name|capitalize }}
                     {% endif %}
@@ -21,7 +21,7 @@
                 {% if field.choices %}
                     {{ field.choices[value] }}
                 {% elseif field.className == 'Mindy\\Orm\\Fields\\BooleanField' %}
-                    {{ t(value ? 'Yes' : 'No', [], 'AdminBundle.messages') }}
+                    {{ t(value ? 'admin.yes' : 'admin.no', [], 'AdminBundle.messages') }}
                 {% elseif field.className == 'Mindy\\Orm\\Fields\\DateTimeField' or field.className == 'Mindy\\Orm\\Fields\\DateField' %}
                     {% if value %}
                         {{ value|humanizeDateTime }}
@@ -37,7 +37,7 @@
                         {{ model[name] }}
                     </a>
                 {% elseif field.className == 'Mindy\\Orm\\Fields\\TextField' %}
-                    {{ value ? value|safe : t('Empty', [], 'AdminBundle.messages') }}
+                    {{ value ? value|safe : t('admin.empty_value', [], 'AdminBundle.messages') }}
                 {% else %}
                     {% if field.className == 'Mindy\\Orm\\Fields\\FileField' %}
                         <a href="{{ value }}">{{ value }}</a>

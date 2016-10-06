@@ -30,7 +30,7 @@
             </a>
         </div>
         <div class="sidebar-search">
-            <input type="search" class="modules__search" placeholder="{{ t('Search...', [], 'AdminBundle.messages') }}"/>
+            <input type="search" class="modules__search" placeholder="{{ t('admin.search.placeholder', [], 'AdminBundle.messages') }}"/>
         </div>
         <div class="sidebar-wrapper">
             <ul class="sidebar-menu quick-actions">
@@ -44,7 +44,7 @@
                             <a href="{% url 'admin_dispatch' with ['bundle' => 'UserBundle', 'admin' => 'UserAdmin', 'action' => 'changePassword'] %}?pk={{ user.pk }}">Изменить пароль</a>
                         </li>
                         <li>
-                            <a href="{% url 'admin_logout' %}" data-confirm="{{ t('Do you really want to log out?', [], 'AdminBundle.messages') }}">Выход</a>
+                            <a href="{% url 'admin_logout' %}" data-confirm="{{ t('admin.logout_confirm', [], 'AdminBundle.messages') }}">Выход</a>
                         </li>
                     </ul>
                 </li>
@@ -113,7 +113,7 @@
                                                 </div>
                                                 <a class="header--user__opensite"
                                                    href="/" target="_blank">
-                                                    {{ t('Open site', [], 'AdminBundle.messages') }}
+                                                    {{ t('admin.open_site', [], 'AdminBundle.messages') }}
                                                 </a>
                                             </div>
                                         </li>
@@ -124,7 +124,7 @@
                                                 </div>
                                                 <a class="header--user__changepassword"
                                                    href="{% url 'admin_dispatch' with ['bundle' => 'UserBundle', 'admin' => 'UserAdmin', 'action' => 'changePassword'] %}?pk={{ user.pk }}">
-                                                    {{ t('Change password', [], 'AdminBundle.messages') }}
+                                                    {{ t('admin.change_password', [], 'AdminBundle.messages') }}
                                                 </a>
                                             </div>
                                         </li>
@@ -134,7 +134,7 @@
                                                     {% include "admin/logout.svg" %}
                                                 </div>
                                                 <a class="header--user__logout" href="{% url 'admin_logout' %}">
-                                                    {{ t('Logout', [], 'AdminBundle.messages') }}
+                                                    {{ t('admin.logout', [], 'AdminBundle.messages') }}
                                                 </a>
                                             </div>
                                         </li>

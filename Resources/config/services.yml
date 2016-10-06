@@ -1,7 +1,3 @@
-parameters:
-    admin.admins:
-        Page: { class: Mindy\Bundle\PageBundle\Admin\PageAdmin }
-
 services:
     admin:
         class: Mindy\Bundle\AdminBundle\Admin\AdminManager

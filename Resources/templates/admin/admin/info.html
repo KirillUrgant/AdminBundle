@@ -1,6 +1,6 @@
 {% extends request.isAjax ? "ajax.html" : 'admin/base.html' %}
 
-{% block title %}{{ t('Information about', [], 'AdminBundle.messages') }} {{ model }}{% endblock %}
+{% block title %}{{ t('admin.action.info', [], 'AdminBundle.messages') }} {{ model }}{% endblock %}
 
 {% block breadcrumbs %}
     {% set this.breadcrumbs = breadcrumbs %}
@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block heading %}
-    <h1>{{ t('Information about', [], 'AdminBundle.messages') }} {{ model }}</h1>
+    <h1>{{ t('admin.action.info', [], 'AdminBundle.messages') }} {{ model }}</h1>
 {% endblock %}
 
 {% block content_class %}info{% endblock %}
@@ -17,16 +17,16 @@
     <p>
         <a href="{{ admin.getAdminUrl('update', ['pk' => model.pk]) }}"
            class="ui button">
-            {{ t('Update', [], 'AdminBundle.messages') }}
+            {{ t('admin.action.update', [], 'AdminBundle.messages') }}
         </a>
         <a href="{{ admin.getAdminUrl('print') }}?pk={{ model.pk }}" target="_blank"
            class="window-open ui button tiny basic print-button">
-            <i class="icon print"></i> {{ t('Print', [], 'AdminBundle.messages') }}
+            <i class="icon print"></i> {{ t('admin.print', [], 'AdminBundle.messages') }}
         </a>
         {% if method_exists(model, 'getAbsoluteUrl') %}
             <a href="{{ model.getAbsoluteUrl() }}" target="_blank"
                class="ui button tiny basic">
-                {{ t('Open at site', [], 'AdminBundle.messages') }}
+                {{ t('admin.open_at_site', [], 'AdminBundle.messages') }}
             </a>
         {% endif %}
     </p>

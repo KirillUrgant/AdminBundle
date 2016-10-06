@@ -19,7 +19,7 @@
     {% endif %}
 
     {% if admin.can('remove') %}
-        <a data-confirm="{{ t('You really want to delete this object?', [], 'AdminBundle') }}" href="{{ admin.getAdminUrl('remove', ['pk' => model.pk]) }}">
+        <a data-confirm="{{ t('admin.delete_confirm', [], 'AdminBundle') }}" href="{{ admin.getAdminUrl('remove', ['pk' => model.pk]) }}">
             <i class="icon trash"></i>
         </a>
     {% endif %}
