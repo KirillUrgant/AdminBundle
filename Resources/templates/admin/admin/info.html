@@ -1,0 +1,41 @@
+{% extends request.isAjax ? "ajax.html" : 'admin/base.html' %}
+
+{% block title %}{{ t('modules.Admin.main', 'Information about') }} {{ model }}{% endblock %}
+
+{% block breadcrumbs %}
+    {% set this.breadcrumbs = breadcrumbs %}
+    {% parent %}
+{% endblock %}
+
+{% block heading %}
+    <h1>{{ t('modules.Admin.main', 'Information about') }} {{ model }}</h1>
+{% endblock %}
+
+{% block content_class %}info{% endblock %}
+
+{% macro buttons %}
+    <p>
+        <a href="{{ admin.getAdminUrl('update', ['pk' => model.pk]) }}"
+           class="ui button">
+            {{ t('modules.Admin.main', 'Update') }}
+        </a>
+        <a href="{{ admin.getAdminUrl('print') }}?pk={{ model.pk }}" target="_blank"
+           class="window-open ui button tiny basic print-button">
+            <i class="icon print"></i> {{ t('modules.Admin.main', 'Print') }}
+        </a>
+        {% if method_exists(model, 'getAbsoluteUrl') %}
+            <a href="{{ model.getAbsoluteUrl() }}" target="_blank"
+               class="ui button tiny basic">
+                {{ t('modules.Admin.main', 'Open on site') }}
+            </a>
+        {% endif %}
+    </p>
+{% endmacro %}
+
+{% block content %}
+    {{ @buttons }}
+
+    {% include admin.findTemplate("_info_table.html") %}
+
+    {{ @buttons }}
+{% endblock %}

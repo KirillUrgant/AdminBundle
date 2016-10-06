@@ -1,0 +1,11 @@
+{% set messages = request.flash.all() %}
+{% if messages|length > 0 %}
+    <ul class="flash-list">
+        {% for message in messages %}
+            <li class="{{ message.status }}">
+                <span class="icon remove float-right">&times;</span>
+                {{ message.message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

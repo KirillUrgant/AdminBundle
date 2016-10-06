@@ -1,0 +1,10 @@
+parameters:
+    admin.admins:
+        Page: { class: Mindy\Bundle\PageBundle\Admin\PageAdmin }
+
+services:
+    admin:
+        class: Mindy\Bundle\AdminBundle\Admin\AdminManager
+        arguments: [ "%admin.admins%" ]
+        calls:
+            - [ setContainer, [ "@service_container" ]]

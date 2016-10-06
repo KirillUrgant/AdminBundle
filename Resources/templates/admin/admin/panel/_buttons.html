@@ -1,0 +1,34 @@
+{% if admin.can('create') or admin.can('export') or admin.searchFields|length > 0 %}
+    <form action="" method="get">
+        <div class="admin--list__button-container">
+            <div class="row">
+                <div class="columns small-3">
+                    {% if admin.can('create') %}
+                        <a href="{{ admin.getAdminUrl('create') }}" class="button button-primary button-small">
+                            {{ t('modules.Admin', 'Create') }}
+                        </a>
+                    {% endif %}
+                    {% if admin.can('export') %}
+                        <a href="{{ admin.getAdminUrl('export') }}" target="_blank"
+                           class="button basic button-small">
+                            <i class="icon download"></i>
+                            {{ t('modules.Admin', 'Export') }}
+                        </a>
+                    {% endif %}
+                </div>
+                <div class="columns small-3">
+                    {% if admin.searchFields|length > 0 %}
+                        <input type="text" name="search" placeholder="{{ t('modules.Admin', 'Search') }}..."
+                               value="{{ request.get.get('search') }}"/>
+                        <button type="submit" class="ui button tiny primary icon">
+                            <i class="search icon"></i> {{ t('modules.Admin', 'Search') }}
+                        </button>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                </div>
+                <div class="columns small-6">&nbsp;</div>
+            </div>
+        </div>
+    </form>
+{% endif %}

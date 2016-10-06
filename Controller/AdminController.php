@@ -15,15 +15,34 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        dump($this->get('translator')->trans('hello', [], 'AdminBundle.messages'));
-        $html = $this->render('admin/index.html');
+        // $menu = $this->getModule()->fetchAdminMenu();
+        $menu = [];
+        $html = $this->render('admin/index.html', [
+            'menu' => $menu
+        ]);
         return new Response($html);
     }
 
     public function dispatchAction($bundle, $admin, $action)
+    { 
+        /** @var \Mindy\Bundle\AdminBundle\Admin\AdminManager $adminManager */
+        $adminManager = $this->get('admin');
+        $instance = $adminManager->getAdmin($bundle, $admin);
+        return $instance->run($action);
+    }
+
+    public function loginAction()
     {
-        return new Response(sprintf(
-            "%s %s %s", $bundle, $admin, $action
-        ));
+        return new Response('todo');
+    }
+
+    public function logoutAction()
+    {
+        return new Response('todo');
+    }
+
+    public function recoverAction()
+    {
+        return new Response('todo');
     }
 }
