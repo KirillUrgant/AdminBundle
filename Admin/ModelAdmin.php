@@ -19,11 +19,6 @@ use function Mindy\trans;
 abstract class ModelAdmin extends Admin
 {
     /**
-     * @var ModuleInterface
-     */
-    protected $module;
-
-    /**
      * @var array
      */
     public $permissions = [
