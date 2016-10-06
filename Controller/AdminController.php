@@ -15,6 +15,7 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
+        dump($this->get('translator')->trans('hello', [], 'AdminBundle.messages'));
         $html = $this->render('admin/index.html');
         return new Response($html);
     }
