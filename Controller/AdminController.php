@@ -18,9 +18,19 @@ class AdminController extends Controller
         // $menu = $this->getModule()->fetchAdminMenu();
         $menu = [];
         $html = $this->render('admin/index.html', [
-            'menu' => $menu
+            'menu' => $menu,
+            'adminMenu' => $this->get('admin.menu')->getMenu()
         ]);
-        return new Response($html);
+        return $this->preventCache(new Response($html));
+    }
+
+    protected function preventCache(Response $response)
+    {
+        $response->headers->addCacheControlDirective('no-cache', true);
+        $response->headers->addCacheControlDirective('max-age', 0);
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+        $response->headers->addCacheControlDirective('no-store', true);
+        return $response;
     }
 
     public function dispatchAction($bundle, $admin, $action)
@@ -28,7 +38,7 @@ class AdminController extends Controller
         /** @var \Mindy\Bundle\AdminBundle\Admin\AdminManager $adminManager */
         $adminManager = $this->get('admin');
         $instance = $adminManager->getAdmin($bundle, $admin);
-        return $instance->run($action);
+        return $this->preventCache($instance->run($action));
     }
 
     public function loginAction()

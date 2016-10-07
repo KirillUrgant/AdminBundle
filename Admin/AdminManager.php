@@ -23,25 +23,6 @@ class AdminManager
     use ContainerAwareTrait;
 
     /**
-     * @var array|AdminInterface[]
-     */
-    protected $_admins = [];
-
-    /**
-     * AdminManager constructor.
-     * @param array $admins
-     */
-    public function __construct(array $admins = [])
-    {
-        foreach ($admins as $id => $config) {
-            $class = $config['class'];
-            unset($config['class']);
-
-            $this->_admins[$id] = (new \ReflectionClass($class))->newInstanceArgs($config);
-        }
-    }
-
-    /**
      * @return \Symfony\Component\HttpKernel\Kernel
      */
     protected function getKernel()

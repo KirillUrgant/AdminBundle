@@ -184,16 +184,7 @@ abstract class BaseAdmin implements AdminInterface
         return $this->container->get('template')->render($template, array_merge($data, [
             'admin' => $this,
             'bundle' => $this->bundle,
-            'adminMenu' => $this->fetchAdminMenu()
+            'adminMenu' => $this->container->get('admin.menu')->getMenu()
         ]));
-    }
-
-    protected function fetchAdminMenu()
-    {
-        if ($this->container->hasParameter('admin.admin_menu')) {
-            return $this->container->getParameter('admin.admin_menu');
-        } else {
-            return [];
-        }
     }
 }

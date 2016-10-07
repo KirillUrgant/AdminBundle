@@ -1,6 +1,9 @@
 services:
     admin:
         class: Mindy\Bundle\AdminBundle\Admin\AdminManager
-        arguments: [ "%admin.admins%" ]
         calls:
             - [ setContainer, [ "@service_container" ]]
+
+    admin.menu:
+        class: Mindy\Bundle\AdminBundle\Admin\AdminMenu
+        arguments: [ "%admin.menu%" ]
