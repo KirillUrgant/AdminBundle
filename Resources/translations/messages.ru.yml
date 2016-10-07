@@ -1,22 +1,22 @@
-admin.search.placeholder: __AdminBundle.messages
-admin.delete_confirm: __AdminBundle.messages
-admin.action.save: __AdminBundle.messages
-admin.action.save_and_continue: __AdminBundle.messages
-admin.action.save_and_create: __AdminBundle.messages
-admin.view_at_site: __AdminBundle.messages
-admin.primary_key: __AdminBundle.messages
-admin.action.info: __AdminBundle.messages
-admin.action.update: __AdminBundle.messages
-admin.print: __AdminBundle.messages
-admin.open_at_site: __AdminBundle.messages
-admin.action.choice: __AdminBundle
-admin.action.create: __AdminBundle.messages
-admin.export: __AdminBundle.messages
-admin.logout_confirm: __AdminBundle.messages
-admin.open_site: __AdminBundle.messages
-admin.change_password: __AdminBundle.messages
-admin.logout: __AdminBundle.messages
-admin.title: __AdminBundle.messages
-admin.menu: __AdminBundle.messages
-admin.signin: __AdminBundle.messages
-admin.sign_in: __AdminBundle.messages
+admin.search.placeholder: Поиск...
+admin.delete_confirm: Вы действительно хотите удалить данный объект?
+admin.action.save: Сохранить
+admin.action.save_and_continue: Сохранить и продолжить
+admin.action.save_and_create: Сохранить и создать
+admin.view_at_site: Посмотреть на сайте
+admin.primary_key: Идентификатор
+admin.action.info: Информация
+admin.action.update: Редактирование
+admin.print: Печать
+admin.open_at_site: Открыть на сайте
+admin.action.choice: Действия
+admin.action.create: Создать
+admin.export: Экспорт
+admin.logout_confirm: Вы действительно хотите выйти?
+admin.open_site: Открыть сайт
+admin.change_password: Изменить пароль
+admin.logout: Выход
+admin.title: Панель управления
+admin.menu: Меню
+admin.signin: Вход
+admin.sign_in: Выход
