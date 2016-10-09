@@ -9,17 +9,16 @@
 <html class="no-js" lang="en">
 <head>
     <meta charset="utf-8"/>
-    <meta http-equiv="Cache-Control" content="no-cache"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="robots" content="noindex, nofollow"/>
     <title>{%- block title -%}{% endblock %} - {{ trans('admin.title') }} - {{ app.name }}</title>
-    <link rel="stylesheet" href="/bundles/admin/css/bundle.css"/>
-    <script type='text/javascript' src="/bundles/admin/js/bundle.js"></script>
-    <script type='text/javascript' src="/bundles/admin/ueditor107/ueditor.all.js"></script>
+    <link rel="stylesheet" href="{{ asset('/bundles/admin/css/bundle.css') }}"/>
+    <script type='text/javascript' src="{{ asset('/bundles/admin/js/bundle.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('/bundles/admin/ueditor107/ueditor.all.js') }}"></script>
 
     {% block css %}{% endblock %}
 </head>
-{% set popup = request.get.get('popup') %}
+{% set popup = request.query.get('popup') %}
 {% set theme = 'default' %}
 <body class="theme-{{ theme }} {% if popup %} popup{% endif %}">
 <div id="wrapper">
@@ -125,7 +124,7 @@
                                 <li>
                                     {% block name %}
                                         <span class="header--title">
-                                            {{ bundle.getName() ? bundle.getName() : t('admin.title') }}
+                                            {{ bundle.getName() ? t(bundle.getName()|replace('Bundle', '')|lower ~ '.admin.admin_title') : t('admin.title') }}
                                         </span>
                                     {% endblock %}
                                 </li>

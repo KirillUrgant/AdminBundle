@@ -167,6 +167,9 @@ abstract class BaseAdmin implements AdminInterface
         $this->bundle = $bundle;
     }
 
+    /**
+     * @return Request
+     */
     public function getRequest() : Request
     {
         /** @var \Symfony\Component\HttpFoundation\RequestStack $requestStack */

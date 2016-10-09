@@ -28,8 +28,8 @@
                 <h1>{{ t('admin.signin') }}</h1>
 
                 <form action="" method="post" class="form--main">
-                    {{ csrf_input()|safe }}
-                    {{ form|safe }}
+                    {% csrf_token %}
+                    {{ form.render()|safe }}
                     <button type="submit" class="ui button fluid tiny primary">{{ t('admin.sign_in') }}</button>
                 </form>
             </div>

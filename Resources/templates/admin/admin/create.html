@@ -17,9 +17,9 @@
     <div class="form--main">
         <form action="" method="post" enctype="multipart/form-data" class="clearfix save-update">
             {% include admin.findTemplate("_buttons_create.html") %}
-            <input type="hidden" value="{{ request.get.get('popup') }}" name="popup" />
-            <input type="hidden" value="{{ request.get.get('popup_id') }}" name="popup_id" />
-            {{ csrf_input()|safe }}
+            <input type="hidden" value="{{ request.query.get('popup') }}" name="popup" />
+            <input type="hidden" value="{{ request.query.get('popup_id') }}" name="popup_id" />
+            {% csrf_token %}
             {{ form.render()|raw }}
             {% include admin.findTemplate("_buttons_create.html") %}
         </form>

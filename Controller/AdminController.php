@@ -15,10 +15,7 @@ class AdminController extends Controller
 {
     public function indexAction()
     {
-        // $menu = $this->getModule()->fetchAdminMenu();
-        $menu = [];
         $html = $this->render('admin/index.html', [
-            'menu' => $menu,
             'adminMenu' => $this->get('admin.menu')->getMenu()
         ]);
         return $this->preventCache(new Response($html));

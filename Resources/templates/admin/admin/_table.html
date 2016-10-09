@@ -94,7 +94,7 @@
                         insertBefore: $next.data('pk')
                     },
                     type: 'POST',
-                    url: '{{ admin.getAdminUrl('sorting', ['pk' => request.get.get('pk')]) }}',
+                    url: '{{ admin.getAdminUrl('sorting', ['pk' => request.query.get('pk')]) }}',
                     success: function (data) {
                         $('.table--loader').hide();
                         $('#main-form').replaceWith(data);

@@ -19,7 +19,7 @@
                 <div class="columns small-3">
                     {% if admin.searchFields|length > 0 %}
                         <input type="text" name="search" placeholder="{{ t('admin.search.placeholder') }}"
-                               value="{{ request.get.get('search') }}"/>
+                               value="{{ request.query.get('search') }}"/>
                         <button type="submit" class="ui button tiny primary icon">
                             <i class="search icon"></i> {{ t('admin.search.placeholder') }}
                         </button>
