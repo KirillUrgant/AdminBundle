@@ -1,0 +1,29 @@
+{
+  "name": "mindy/admin-bundle",
+  "type": "mindy-bundle",
+  "description": "Mindy AdminBundle",
+  "keywords": [],
+  "homepage": "https://mindy-cms.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Falaleev Maxim",
+      "email": "fabien@symfony.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "doctrine/inflector": "^1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.3.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mindy\\Bundle\\AdminBundle\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  }
+}
