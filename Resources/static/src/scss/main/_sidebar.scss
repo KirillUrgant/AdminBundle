@@ -1,0 +1,43 @@
+.b-sidebar {
+    width: $sidebar-width;
+    height: 100%;
+    background: #3d454d;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 10;
+
+    &_show {
+        display: block;
+    }
+
+    &_shadow {
+        box-shadow: 2px 0 30px 0 rgba(0,0,0,0.7);
+    }
+}
+
+.b-sidebar-buttons {
+    width: 100%;
+    padding: 10px;
+
+    &__burger {
+        color: #b9bbbe !important;
+
+        &:hover {
+            color: #5c5c5c !important;
+        }
+    }
+
+    &__pin {
+        color: #b9bbbe !important;
+
+        &:hover {
+            color: #5c5c5c !important;
+        }
+
+        &_checked {
+            transform: rotate(90deg);
+        }
+    }
+}
