@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="ru"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8" lang="ru"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9" lang="ru"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="robots" content="noindex, nofollow"/>
+    <title>{%- block title -%}{% endblock %} - {{ trans('admin.title') }} - {{ app.name }}</title>
+    <link rel="stylesheet" href="{{ asset('/bundles/admin/css/bundle.css') }}"/>
+    <script type='text/javascript' src="{{ asset('/bundles/admin/js/bundle.js') }}"></script>
+    <script type='text/javascript' src="{{ asset('/bundles/admin/ueditor107/ueditor.all.js') }}"></script>
+
+    {% block css %}{% endblock %}
+</head>
+{% set popup = request.query.get('popup') %}
+{% set theme = 'default' %}
+<body class="theme-{{ theme }} {% if popup %} popup{% endif %}">
+<div id="wrapper">
+    <div id="sidebar">
+        <div class="sidebar-logo">
+            <a href="/">
+                {% include "admin/logo.svg" %}
+            </a>
+        </div>
+        <div class="sidebar-search">
+            <input type="search" class="modules__search" placeholder="{{ t('admin.search.placeholder') }}"/>
+        </div>
+        <div class="sidebar-wrapper">
+            <ul class="sidebar-menu quick-actions">
+                <li>
+                    <span>Быстрые действия</span>
+                    <ul class="sidebar-menu-child">
+                        <li>
+                            <a href="/" target="_blank">Открыть сайт</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_dispatch' with ['bundle' => 'UserBundle', 'admin' => 'UserAdmin', 'action' => 'changePassword'] %}?pk={{ user.pk }}">Изменить пароль</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'admin_logout' %}" data-confirm="{{ t('admin.logout_confirm') }}">Выход</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            {% for menu in adminMenu %}
+                <ul class="sidebar-menu">
+                    <li>
+                        {% if not menu.route %}
+                            <a href="#">{{ t(menu.name) }}</a>
+                        {% else %}
+                            <a href="{% url menu.route with menu.defaults %}">{{ t(menu.name) }}</a>
+                        {% endif %}
+
+                        <ul class="sidebar-menu-child">
+                            {% for item in menu.menu %}
+                                <li>
+                                    <div class="sidebar-menu-item">
+                                        <a href="{% url item.route with item.defaults %}">{{ t(item.name) }}</a>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="main">
+        {% if not popup %}
+            <div class="header">
+                <div class="row">
+                    <div class="columns small-12">
+                        <div class="header--content">
+                            <div class="float-right">
+                                <div class="header--user">
+                                    {% include "admin/icons/settings.svg" %}
+                                    {{ user }}
+                                    <ul class="header--user-list">
+                                        <li>
+                                            <div class="header-menu-item">
+                                                <div class="header-menu-icon">
+                                                    {% include "admin/link.svg" %}
+                                                </div>
+                                                <a class="header--user__opensite"
+                                                   href="/" target="_blank">
+                                                    {{ t('admin.open_site') }}
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="header-menu-item">
+                                                <div class="header-menu-icon">
+                                                    {% include "admin/password.svg" %}
+                                                </div>
+                                                <a class="header--user__changepassword"
+                                                   href="{% url 'admin_dispatch' with ['bundle' => 'UserBundle', 'admin' => 'UserAdmin', 'action' => 'changePassword'] %}?pk={{ user.pk }}">
+                                                    {{ t('admin.change_password') }}
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="header-menu-item">
+                                                <div class="header-menu-icon">
+                                                    {% include "admin/logout.svg" %}
+                                                </div>
+                                                <a class="header--user__logout" href="{% url 'admin_logout' %}">
+                                                    {{ t('admin.logout') }}
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <ul class="header--main">
+                                <li>
+                                    {% block name %}
+                                        <span class="header--title">
+                                            {{ bundle.getName() ? t(bundle.getName()|replace('Bundle', '')|lower ~ '.admin.admin_title') : t('admin.title') }}
+                                        </span>
+                                    {% endblock %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                {% if module %}
+                    {% set menu = get_module_menu(bundle.getName()) %}
+                    {% if menu|length > 1 %}
+                        <div class="tabs">
+                            <div class="row">
+                                <div class="columns small-12">
+                                    <ul class="tabs--list">
+                                        {% block tabs %}
+                                            {% for item in menu %}
+                                                <li class="tab--item tab--item{% if admin and admin.classNameShort() == item.url|explode('/')[4] or item.url == request.path %}__active{% endif %}">
+                                                    <a href="{{ item.url }}">{{ item.name }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endblock %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="row">
+            <div class="columns small-12">
+                {% if not popup %}
+                    {% block flash %}
+                        {% include "admin/_flash.html" %}
+                    {% endblock %}
+
+                    {% block breadcrumbs %}
+                        <div class="breadcrumbs">
+                            {% include "admin/_breadcrumbs.html" %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+
+                <div class="main--block__white">
+                    {#{% include "admin/_sidebar.html" %}#}
+
+                    <div id="content" class="{% block content_class %}{% endblock %}">
+                        <div class="content-wrap">
+                            <div class="heading">
+                                {% block heading %}{% endblock %}
+                            </div>
+
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="row">
+                <div class="columns small-12">
+                    <p>
+                        <a href="http://mindy-cms.com" target="_blank">Mindy Framework</a> &copy; {{ time()|date('Y') }}
+                        Исходный код <a href="https://github.com/MindyPHP" target="_blank">Github.com</a>
+                        Проект разработан <a href="http://studio107.ru"
+                                             target="_blank">Studio107</a> &copy; {{ time()|date('Y') }}
+                    </p>
+                    <p>
+                        Запрещено использование для коммерческих проектов без предварительного письменного согласия
+                        автора.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

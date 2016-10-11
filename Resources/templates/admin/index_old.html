@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{{ t('admin.menu') }}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="columns small-12">
+            {% for name, items in menu %}
+                {% if items|length == 0 %}
+                    {% continue %}
+                {% endif %}
+                <div class="admin-index-menu">
+                    <div class="admin-index-module-name">{{ name }}</div>
+                    <ul class="small-block-grid-5">
+                        {% for route in items %}
+                            <li>
+                                <div class="admin-index-menu-item">
+                                    <div class="admin-index-menu-icon">
+                                        {% include route.icon ? route.icon : "admin/icons/unknown.svg" %}
+                                    </div>
+                                    <a href="{{ route.url }}">{{ route.name }}</a>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
