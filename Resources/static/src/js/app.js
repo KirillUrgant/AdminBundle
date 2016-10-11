@@ -1,6 +1,12 @@
 ;$(function () {
     var sidebar = $(".b-sidebar");
 
+    sidebar.niceScroll({
+        cursorcolor:"#b9bbbe",
+        cursorborder: "none"
+    });
+    sidebar.getNiceScroll().resize();
+
     $(".b-header__burger").on("click", function(e) {
         e.preventDefault();
 
