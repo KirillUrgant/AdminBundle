@@ -12,8 +12,94 @@
     {% block css %}{% endblock %}
 </head>
 <body>
-    {% block main %}
-    {% endblock main %}
+    <header class="clearfix b-header">
+        <div class="left">
+            <a class="b-aw-button b-header__burger" href="#">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <div class="b-header__current-page">Текущая страница</div>
+        </div>
+        <div class="right b-header__user">
+            <a class="b-header__user-link" href="#">
+                <span class="b-header__user-name">Zach</span>
+                <img class="b-header__user-img" src="http://placehold.it/40x40" alt="avatar">
+            </a>
+            <ul class="b-user-menu">
+                <li class="b-user-menu__item">
+                    <a class="b-user-menu__link" href="#">Настройки</a>
+                </li>
+                <li class="b-user-menu__item">
+                    <a class="b-user-menu__link" href="#">Выйти</a>
+                </li>
+            </ul>
+        </div>
+        <div class="show-for-large-up b-logo b-logo_center">
+            <a class="b-logo__link" href="/">
+                <div class="b-logo__img">{% include "admin/logo.svg" %}</div>
+            </a>
+        </div>
+    </header>
+    <div class="b-sidebar">
+        <div class="clearfix b-sidebar-buttons">
+            <a class="left b-aw-button b-sidebar-buttons__burger" href="#">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <a class="right show-for-large-up b-aw-button b-sidebar-buttons__pin" href="#">
+                <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+            </a>
+        </div>
+        <div class="b-sidebar-content">
+            <div class="b-sidebar-menu">
+                <div class="b-sidebar-menu__name">Быстрые действия</div>
+                <ul class="b-sidebar-menu__child">
+                    <li>
+                        <a class="b-sidebar-menu__item-child b-sidebar-menu__item-child_default-padding" href="/" target="_blank"><i class="fa fa-link" aria-hidden="true"></i>Открыть сайт</a>
+                    </li>
+                    <li>
+                        <a class="b-sidebar-menu__item-child b-sidebar-menu__item-child_default-padding" href="{% url 'admin_dispatch' with ['bundle' => 'UserBundle', 'admin' => 'UserAdmin', 'action' => 'changePassword'] %}?pk={{ user.pk }}"><i class="fa fa-key" aria-hidden="true"></i>Изменить пароль</a>
+                    </li>
+                    <li>
+                        <a class="b-sidebar-menu__item-child b-sidebar-menu__item-child_default-padding" href="{% url 'admin_logout' %}" data-confirm="{{ t('admin.logout_confirm') }}"><i class="fa fa-sign-out" aria-hidden="true"></i>Выход</a>
+                    </li>
+                </ul>
+            </div>
+
+            {% for menu in adminMenu %}
+                <div class="b-sidebar-menu">
+                    {% if not menu.route %}
+                        <a class="b-sidebar-menu__name b-sidebar-menu__name_link" href="#"><i class="fa fa-cogs" aria-hidden="true"></i>{{ t(menu.name) }}</a>
+                    {% else %}
+                        <a class="b-sidebar-menu__name b-sidebar-menu__name_link" href="{% url menu.route with menu.defaults %}"><i class="fa fa-cogs" aria-hidden="true"></i>{{ t(menu.name) }}</a>
+                    {% endif %}
+
+                    <ul class="b-sidebar-menu__child">
+                        {% for item in menu.menu %}
+                            <li>
+                                <a class="b-sidebar-menu__item-child" href="{% url item.route with item.defaults %}">{{ t(item.name) }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="b-page">
+        {% block content %}
+        {% endblock content %}
+        <footer class="b-footer">
+            <div class="columns small-12">
+                <p>
+                    <a href="http://mindy-cms.com" target="_blank">Mindy Framework</a> &copy; {{ time()|date('Y') }}
+                    Исходный код <a href="https://github.com/MindyPHP" target="_blank">Github.com</a>
+                    Проект разработан <a href="http://studio107.ru"
+                                         target="_blank">Studio107</a> &copy; {{ time()|date('Y') }}
+                </p>
+                <p>
+                    Запрещено использование для коммерческих проектов без предварительного письменного согласия
+                    автора.</p>
+            </div>
+        </footer>
+    </div>
     <script>
         $(document).foundation();
     </script>

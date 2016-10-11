@@ -41,3 +41,50 @@
         }
     }
 }
+
+.b-sidebar-menu {
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 20px;
+
+    &__name {
+        padding: 0 20px;
+        color: #b9bbbe;
+
+        &_link {
+            &:hover {
+                color: white;
+            }
+
+            .fa {
+                padding-right: 10px;
+            }
+        }
+    }
+
+    &__child {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__item-child {
+        display: block;
+        padding: 5px 20px 5px 48px;
+        font-size: 0.9rem;
+        color: #b9bbbe;
+
+        &:hover {
+            color: #b9bbbe;
+            background: #383f45;
+        }
+
+        .fa {
+            padding-right: 10px;
+        }
+
+        &_default-padding {
+            padding: 5px 20px;
+        }
+    }
+}

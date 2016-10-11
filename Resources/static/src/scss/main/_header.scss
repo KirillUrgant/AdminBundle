@@ -159,8 +159,16 @@
 .b-logo {
     width: 40px;
     height: 40px;
+    filter: grayscale(50%);
 
     &_center {
         margin: 0 auto;
+    }
+
+    &__img {
+        svg {
+            width: auto;
+            height: 40px;
+        }
     }
 }
